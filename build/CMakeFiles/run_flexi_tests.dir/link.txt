@@ -1,0 +1,1 @@
+/usr/bin/cc -g CMakeFiles/run_flexi_tests.dir/src/stack_operations.c.o CMakeFiles/run_flexi_tests.dir/tests/test_flexistack.c.o CMakeFiles/run_flexi_tests.dir/tests/main.c.o CMakeFiles/run_flexi_tests.dir/external/Unity/src/unity.c.o -o run_flexi_tests 

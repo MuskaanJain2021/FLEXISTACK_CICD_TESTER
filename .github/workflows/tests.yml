@@ -1,0 +1,44 @@
+name: FlexiStack CI
+
+# Trigger the workflow on push or pull request to the main branch
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    # Use the latest Ubuntu runner
+    runs-on: ubuntu-24.04
+
+    steps:
+      # 1. Pull the source code from your repository
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive # Ensures Unity is pulled if added as a submodule
+
+      # 2. Setup the build environment
+      - name: Install Build Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake gcc valgrind
+
+      # 3. Configure CMake
+      # This creates the 'build' directory and prepares the Makefiles
+      - name: Configure CMake
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
+
+      # 4. Compile the project
+      - name: Build Project
+        run: cmake --build build
+
+      # 5. Execute the Unity Test Runner
+      - name: Run Unity Tests
+        run: ./build/run_flexi_tests
+
+      # 6. Defensive Memory Check (Valgrind)
+      # This will fail the build if there are memory leaks (e.g., forgotten free() on strings)
+      - name: Memory Leak Detection
+        run: valgrind --leak-check=full --error-exitcode=1 ./build/run_flexi_tests

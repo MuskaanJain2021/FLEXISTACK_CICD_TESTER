@@ -1,0 +1,4 @@
+/mnt/e/GitHub/FLEXISTACK_CICD_TESTER/FLEXISTACK_CICD_TESTER/build/CMakeFiles/run_flexi_tests.dir
+/mnt/e/GitHub/FLEXISTACK_CICD_TESTER/FLEXISTACK_CICD_TESTER/build/CMakeFiles/test.dir
+/mnt/e/GitHub/FLEXISTACK_CICD_TESTER/FLEXISTACK_CICD_TESTER/build/CMakeFiles/edit_cache.dir
+/mnt/e/GitHub/FLEXISTACK_CICD_TESTER/FLEXISTACK_CICD_TESTER/build/CMakeFiles/rebuild_cache.dir
