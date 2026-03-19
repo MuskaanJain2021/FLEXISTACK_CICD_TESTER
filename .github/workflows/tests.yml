@@ -62,11 +62,10 @@ jobs:
       - name: Run Doxygen
         run: |
           doxygen -g Doxyfile_gen
-          # Tell Doxygen where your files are
-          sed -i 's|INPUT                  =|INPUT                  = src/ include/|' Doxyfile_gen
-          sed -i 's|GENERATE_LATEX         = YES|GENERATE_LATEX         = NO|' Doxyfile_gen
+          sed -i 's|^INPUT .*=|INPUT = src/ include/|' Doxyfile_gen
+          sed -i 's|^GENERATE_LATEX .*= YES|GENERATE_LATEX = NO|' Doxyfile_gen
           doxygen Doxyfile_gen
-
+          
       - name: Upload Documentation Artifact
         uses: actions/upload-artifact@v4
         with:
