@@ -1,1 +1,46 @@
+# =========================
+# CMake & Build Directories
+# =========================
 build/
+build_asan/
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+Testing/
+
+# =========================
+# Compiled Binaries & Objects
+# =========================
+*.o
+*.obj
+*.exe
+*.out
+*.elf
+*.bin
+*.hex
+*.map
+*.a
+*.so
+
+# =========================
+# VS Code Settings & Cache
+# =========================
+.vscode/
+*.code-workspace
+.history/
+
+# =========================
+# OS Generated Files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Testing & Debugging (Valgrind)
+# =========================
+vgcore.*
+*.log
