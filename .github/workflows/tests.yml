@@ -58,14 +58,13 @@ jobs:
 
       - name: Install Doxygen
         run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
-
+        
       - name: Run Doxygen
         run: |
-          doxygen -g Doxyfile_gen
-          sed -i 's|^INPUT .*=|INPUT = src/ include/|' Doxyfile_gen
-          sed -i 's|^GENERATE_LATEX .*= YES|GENERATE_LATEX = NO|' Doxyfile_gen
-          doxygen Doxyfile_gen
-          
+          # No need to generate or sed anymore! 
+          # Just run it using your committed Doxyfile.
+          doxygen Doxyfile
+
       - name: Upload Documentation Artifact
         uses: actions/upload-artifact@v4
         with:
