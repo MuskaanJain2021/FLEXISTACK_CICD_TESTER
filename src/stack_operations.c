@@ -266,7 +266,7 @@ void PrintStackBottemToTop(GenericStack *stack)
     // Print array backward (bottem to top)
     for (int i = idx - 1; i >= 0; i--)
     {
-        StackNode *node = nodeArr[i];
+        const StackNode *node = nodeArr[i];
         if (node->type == TYPE_INT)
         {
             printf("%d ", node->data.intVal);
