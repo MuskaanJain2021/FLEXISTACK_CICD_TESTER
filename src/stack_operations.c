@@ -2,7 +2,7 @@
 #include <stddef.h>
 #include <string.h>
 
-GenericStack GenericStackInstance = {NULL,0,0};
+GenericStack GenericStackInstance = {NULL, 0, 0};
 // Customized strlen function
 size_t MY_StrLenCalc(const char *str)
 {
@@ -148,7 +148,8 @@ StackData Pop(GenericStack *stack, StackErrorCode *error, DataTypeIdentifier *ty
 
     // Remove the top node from the stack
     StackNode *temp = stack->top;
-    if (type != NULL) *type = temp->type; // Set the type of the popped data if type pointer is provided
+    if (type != NULL)
+        *type = temp->type; // Set the type of the popped data if type pointer is provided
     //*type = temp->type;
 
     if (temp->type == TYPE_INT)
@@ -223,7 +224,8 @@ void ResizeStack(GenericStack *stack, int newSize, StackErrorCode *error)
     {
         DataTypeIdentifier discardType;
         StackData DiscardedData = Pop(stack, error, &discardType);
-        if (*error != STACK_CORRECT) break; // Stop popping if an error occurs
+        if (*error != STACK_CORRECT)
+            break; // Stop popping if an error occurs
 
         if (discardType == TYPE_STRING && DiscardedData.stringVal != NULL)
         {
@@ -428,17 +430,14 @@ StringStack *CreateStringStack()
 void PushString(StringStack *stack, const char *data)
 {
     StackData stackData;
-    size_t len = MY_StrLenCalc(data);
-    stackData.stringVal = (char *)calloc(len + 1, sizeof(char)); // Allocate memory for string
+    StackErrorCode error;
+    stackData.stringVal = (char *)data;
     if (stackData.stringVal != NULL)
     {
-        my_memcpy(stackData.stringVal, data, len + 1); // Copy the string data
-        StackErrorCode error;
         Push((StringStack *)stack, stackData, TYPE_STRING, &error);
         if (error != STACK_CORRECT)
         {
             fprintf(stderr, "Push failed for string stack\n");
-            free(stackData.stringVal); // Free allocated memory on failure
         }
     }
     else

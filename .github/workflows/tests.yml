@@ -12,6 +12,10 @@ jobs:
     # Use the latest Ubuntu runner
     runs-on: ubuntu-24.04
 
+    # THIS IS THE FIX: Forces actions to use the updated Node.js 24 engine
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
     steps:
       # 1. Pull the source code from your repository
       - name: Checkout Code
