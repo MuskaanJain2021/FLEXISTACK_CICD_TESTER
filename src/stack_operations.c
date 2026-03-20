@@ -1,3 +1,10 @@
+/**
+ * @file stack_operations.c
+ * @brief Implementation of the FlexiStack library.
+ * * This file contains the private data assignment functions and the
+ * public API implementation for the generic stack.
+ */
+
 #include "stack_operations.h"
 #include <stddef.h>
 #include <string.h>
@@ -38,24 +45,25 @@ void (*assignDataFunc[])(StackNode *, StackData) = {
     assignStringData,
 };
 
+/**@INTERNAL */
 // Assign data function for integer
 void assignIntData(StackNode *node, StackData data)
 {
     node->data.intVal = data.intVal;
 }
-
+/**@INTERNAL */
 // Assign data function for float
 void assignFloatData(StackNode *node, StackData data)
 {
     node->data.floatVal = data.floatVal;
 }
-
+/**@INTERNAL */
 // Assign data function for double
 void assignDoubleData(StackNode *node, StackData data)
 {
     node->data.doubleVal = data.doubleVal;
 }
-
+/**@INTERNAL */
 // Assign data function for string
 void assignStringData(StackNode *node, StackData data)
 {
