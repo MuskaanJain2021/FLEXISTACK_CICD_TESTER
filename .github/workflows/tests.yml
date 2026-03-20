@@ -40,12 +40,15 @@ jobs:
       - name: Build Project
         run: cmake --build build
 
-      - name: Run Unity Tests
-        run: ./build/run_flexi_tests
+      # CTest acts as the "Manager" for your Unity tests
+      - name: Run Unity Tests via CTest
+        working-directory: build
+        run: ctest --output-on-failure
 
+      # Valgrind makes sure Unity didn't leave any memory behind
       - name: Memory Leak Detection (Valgrind)
         run: valgrind --leak-check=full --error-exitcode=1 ./build/run_flexi_tests
-
+        
   # --- STAGE 2: Continuous Delivery (CD) ---
   # This job only runs if Stage 1 passes AND you pushed a version tag.
   generate-docs:
